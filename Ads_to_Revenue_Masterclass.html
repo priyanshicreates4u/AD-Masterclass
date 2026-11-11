@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ads to Revenue Framework Masterclass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B222F; --ink:#000; --body:#665B53; --muted:#6B7280;
+  --blue:#008FD3; --blue2:#188BF6; --orange:#FF7300; --coral:#E76F51; --coral-bg:#F8E8E2;
+  --lav:#F6F6FF; --white:#fff; --line:#E5E7EB;
+  --note:#7C3AED;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--white);line-height:1.55}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+
+/* annotation layer */
+.note{display:inline-block;background:var(--note);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:6px;margin:0 0 8px;vertical-align:middle}
+.note.fix{background:#059669}
+body.clean .note,body.clean .note-box{display:none}
+.note-box{border:2px dashed var(--note);border-radius:12px;padding:10px 14px;margin:14px 0;font-size:13px;color:#4C1D95;background:#F5F3FF}
+.toggle{position:fixed;right:16px;bottom:16px;z-index:50;background:var(--note);color:#fff;border:0;border-radius:999px;padding:12px 18px;font:600 14px Inter;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+
+/* top bar */
+.topbar{background:var(--navy);color:#F6F6FF;text-align:center;padding:10px 12px;display:flex;justify-content:center;align-items:center;gap:22px;flex-wrap:wrap}
+.topbar h4{font-size:20px;font-weight:700;letter-spacing:.02em}
+.cd{display:flex;gap:18px}
+.cd div{text-align:center;line-height:1.1}
+.cd b{display:block;font-size:22px}
+.cd span{font-size:11px;opacity:.7}
+.seats{font-size:13px;background:rgba(255,115,0,.18);color:#FFB27A;border-radius:999px;padding:4px 12px;font-weight:600}
+
+/* nav */
+nav{border-bottom:1px solid var(--line);background:#fff}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+nav .links{display:flex;align-items:center;gap:26px;font-size:14px;color:#0B222F;font-weight:500}
+.btn{display:inline-block;background:var(--orange);color:#fff;font-weight:700;border-radius:20px;padding:16px 28px;font-size:16px;text-align:center;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.blue{background:var(--blue);padding:12px 22px;font-size:14px}
+.logo{font-size:30px;font-weight:300;letter-spacing:-.04em}
+
+/* hero */
+.hero{background:var(--lav);padding:56px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.eyebrow{font-size:15px;font-weight:500}
+.hero h1{font-size:53px;font-weight:800;line-height:1.08;margin:4px 0 14px;letter-spacing:-.02em}
+.hero h2{font-size:34px;font-weight:700;line-height:1.18}
+.hero h2 em{font-style:normal;color:var(--blue2)}
+.hero p.lead{color:var(--body);font-size:17px;margin:18px 0}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 24px}
+.chip{background:#fff;border:1px solid #DDE3F0;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500;display:flex;gap:6px;align-items:center}
+.chip b{color:var(--blue)}
+.video{aspect-ratio:9/12;border-radius:20px;overflow:hidden;position:relative;background:#ddd url('https://images.leadconnectorhq.com/image/f_webp/q_80/r_900/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fbe43e2e735bbc375a21b.jpg') center/cover;box-shadow:0 20px 50px rgba(11,34,47,.18)}
+.video:after{content:"▶";position:absolute;inset:auto auto 20px 20px;width:56px;height:56px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;font-size:20px}
+.small{font-size:13px;color:var(--muted);margin-top:10px}
+
+/* featured */
+.featured{padding:36px 0;text-align:center;border-bottom:1px solid var(--line)}
+.featured h5{color:#8893A8;font-weight:400;font-size:20px;letter-spacing:.12em;margin-bottom:20px}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:34px;align-items:center}
+.logos img{height:34px;width:auto;filter:grayscale(1);opacity:.75}
+
+/* sections */
+section.pad{padding:76px 0}
+.pill{display:inline-block;border-radius:50px;padding:10px 22px;font-weight:700;font-size:14px;letter-spacing:.06em;box-shadow:0 4px 18px rgba(0,0,0,.06);background:#fff}
+.pill.coral{color:var(--coral)}
+.pill.blue{color:var(--blue)}
+.pill.coralbg{background:var(--coral-bg);color:var(--coral)}
+.center{text-align:center}
+h3.sec{font-size:40px;font-weight:800;line-height:1.15;margin:18px 0 10px;letter-spacing:-.01em}
+.sub{color:var(--body);font-size:17px;max-width:720px;margin:0 auto}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 6px 24px rgba(11,34,47,.05)}
+.card p{color:var(--body)}
+.card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+.problem .ic{background:var(--coral-bg);color:var(--coral)}
+.alt{background:var(--lav)}
+.check li{list-style:none;position:relative;padding:14px 0 14px 40px;border-bottom:1px solid var(--line);color:#0F2A38;font-size:17px}
+.check li:before{content:"✓";position:absolute;left:0;top:13px;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.split img{border-radius:20px}
+.modules{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+.mod{background:#fff;border-radius:18px;padding:24px;border:1px solid var(--line);position:relative}
+.mod .n{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.08em}
+.mod h4{font-size:18px;font-weight:700;margin:6px 0 8px}
+.mod p{color:var(--body);font-size:15px}
+.ws{background:var(--navy);color:#fff;border-radius:22px;padding:32px;margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.ws h4{font-size:24px;margin-bottom:8px}
+.ws p{color:#C9D8E0}
+.quote{font-size:30px;font-weight:700;line-height:1.25;margin-bottom:18px}
+.founder p{color:var(--body);margin-bottom:12px}
+.founder a{color:var(--blue2);font-weight:600}
+.stats{display:flex;gap:28px;margin-top:20px;flex-wrap:wrap}
+.stats div b{display:block;font-size:30px;color:var(--blue)}
+.stats div span{font-size:13px;color:var(--muted)}
+.better{background:var(--blue);color:#fff;text-align:center}
+.better h3{font-size:44px;font-weight:800;letter-spacing:-.01em}
+.better p{max-width:760px;margin:12px auto 0;font-size:18px;opacity:.92}
+.offer{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;margin-top:34px;align-items:start}
+.price{background:#fff;border:2px solid var(--orange);border-radius:22px;padding:30px;text-align:center;box-shadow:0 18px 40px rgba(255,115,0,.12)}
+.price .amt{font-size:56px;font-weight:900}
+.price .amt s{font-size:22px;color:var(--muted);font-weight:500}
+.price small{display:block;color:var(--muted);margin-bottom:18px}
+.reviews{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+.rev{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;font-size:14px;color:#344054}
+.rev .stars{color:#F5B301;letter-spacing:2px;margin-bottom:8px}
+.rev mark{background:#FFF3B0;padding:0 2px}
+.rev .who{margin-top:12px;font-weight:700;color:#000;display:flex;justify-content:space-between;align-items:center}
+.rev .who span{font-weight:500;color:var(--muted);font-size:12px}
+.formwrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+form{background:#fff;border-radius:20px;padding:28px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(11,34,47,.06)}
+label{font-size:13px;font-weight:600;display:block;margin:12px 0 6px}
+input{width:100%;padding:12px 14px;border:1px solid #D0D5DD;border-radius:8px;font:15px Inter}
+form .btn{width:100%;border-radius:8px;margin-top:20px;background:#FF7108}
+.secure{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{font-weight:600;font-size:17px;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+.faq summary:after{content:"+";color:var(--blue);font-size:22px}
+.faq details[open] summary:after{content:"–"}
+.faq details p{color:var(--body);margin-top:10px}
+footer{background:var(--navy);color:#C9D8E0;padding:40px 0;text-align:center}
+footer b{color:#fff;font-size:20px}
+footer .fl{display:flex;justify-content:center;gap:22px;margin-top:12px;font-size:14px}
+.sticky{display:none}
+@media (max-width:900px){
+  .hero .wrap,.split,.offer,.formwrap,.ws{grid-template-columns:1fr}
+  .modules,.reviews{grid-template-columns:1fr 1fr}
+  .grid2{grid-template-columns:1fr}
+  .hero h1{font-size:38px}.hero h2{font-size:26px}h3.sec,.better h3{font-size:30px}
+  nav .links a:not(.btn){display:none}
+  .video{max-width:420px}
+  .sticky{display:block;position:fixed;left:0;right:0;bottom:0;padding:10px 16px;background:#fff;box-shadow:0 -6px 20px rgba(0,0,0,.08);z-index:40}
+  .sticky .btn{width:100%}
+  .toggle{bottom:84px}
+}
+@media (max-width:560px){.modules,.reviews{grid-template-columns:1fr}.cd{gap:12px}}
+
+/* problem interactive */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.pcard{all:unset;box-sizing:border-box;cursor:pointer;position:relative;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:24px;transition:all .2s;box-shadow:0 6px 24px rgba(11,34,47,.05)}
+.pcard:hover{transform:translateY(-3px);border-color:#F3C4B6}
+.pcard h4{font-size:17px;font-weight:700;margin:12px 0 6px;color:#000}
+.pcard p{color:var(--body);font-size:14.5px}
+.pcard .pic{width:42px;height:42px;border-radius:12px;background:var(--coral-bg);color:var(--coral);display:grid;place-items:center;font-size:19px}
+.pcard .tick{position:absolute;top:18px;right:18px;width:24px;height:24px;border-radius:50%;border:1.5px solid #D0D5DD;display:grid;place-items:center;font-size:13px;color:transparent;transition:.2s}
+.pcard .fix{display:block;max-height:0;overflow:hidden;opacity:0;font-size:13.5px;color:var(--blue);transition:.3s;margin-top:0}
+.pcard.on{border-color:var(--coral);background:#FFFAF8}
+.pcard.on .tick{background:var(--coral);border-color:var(--coral);color:#fff}
+.pcard.on .fix{max-height:40px;opacity:1;margin-top:12px}
+.pres{margin:30px auto 0;max-width:520px}
+.pmeter{height:8px;background:#EEF0F4;border-radius:99px;overflow:hidden;margin-bottom:12px}
+.pmeter span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--coral),var(--orange));transition:width .35s}
+#ptext{font-weight:600;margin-bottom:14px}
+/* host */
+.host{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;align-items:center;margin-top:30px}
+.hphoto{position:relative}
+.hphoto img{border-radius:24px;aspect-ratio:4/5;object-fit:cover;width:100%;background:#E5E7EB}
+.hbadge{position:absolute;left:18px;bottom:18px;background:#fff;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.hrole{color:var(--blue);font-weight:600;margin-bottom:14px}
+.hchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.hchips span{background:#fff;border:1px solid #DDE3F0;border-radius:999px;padding:7px 13px;font-size:13px;color:#0F2A38}
+.hchips b{color:var(--blue)}
+.host .quote{font-size:24px;border-left:4px solid var(--blue);padding-left:16px}
+.htabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin:8px 0 14px;flex-wrap:wrap}
+.htabs button{all:unset;cursor:pointer;padding:10px 14px;font-size:14px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+.htabs button.on{color:var(--blue);border-color:var(--blue)}
+.hpane{display:none;color:var(--body);min-height:96px}
+.hpane.on{display:block;animation:fade .3s}
+.hlinks{display:flex;gap:18px;margin-top:14px;font-weight:600;color:var(--blue2);font-size:14px}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+/* better leads */
+.bl{background:#fff}
+.bl .blw{color:var(--blue)}
+.bl .msw{color:#B0B7C3;text-decoration:line-through;text-decoration-thickness:3px}
+.sw{position:relative;display:inline-flex;background:#F2F4F7;border-radius:999px;padding:5px;margin:30px 0 26px}
+.sw button{all:unset;cursor:pointer;position:relative;z-index:2;padding:11px 24px;font-weight:600;font-size:15px;color:var(--muted);transition:color .25s}
+.sw button.on{color:#fff}
+.sw .knob{position:absolute;z-index:1;top:5px;left:5px;height:calc(100% - 10px);border-radius:999px;background:var(--coral);transition:all .3s}
+.inbox{max-width:620px;margin:0 auto;min-height:290px;position:relative}
+.msgs,.leads{position:absolute;inset:0;transition:opacity .35s,transform .35s}
+.msgs{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.m{background:#F2F4F7;border-radius:16px 16px 16px 4px;padding:11px 16px;font-size:15px;color:#344054;animation:pop .4s backwards}
+.m:nth-child(2){margin-left:60px;animation-delay:.05s}.m:nth-child(3){margin-left:20px;animation-delay:.1s}.m:nth-child(4){margin-left:90px;animation-delay:.15s}.m:nth-child(5){margin-left:40px;animation-delay:.2s}
+.m i{color:#B0B7C3;font-size:13px}
+.leads{display:grid;gap:12px;text-align:left;opacity:0;transform:translateY(10px);pointer-events:none}
+.l{display:flex;gap:16px;align-items:center;border:1px solid #CFE8F5;background:#F5FBFF;border-radius:16px;padding:16px 20px}
+.l span{font-weight:800;color:var(--blue);font-size:20px;min-width:30px}
+.l b{font-size:16px}.l p{color:var(--body);font-size:14px}
+.inbox.lead .msgs{opacity:0;transform:translateY(-10px);pointer-events:none}
+.inbox.lead .leads{opacity:1;transform:none;pointer-events:auto}
+.blstat{margin-top:22px;font-weight:600;color:var(--coral);transition:color .3s}
+.blstat.good{color:var(--blue)}
+@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1}}
+@media (max-width:900px){.pgrid{grid-template-columns:1fr 1fr}.host{grid-template-columns:1fr}.hphoto{max-width:380px}}
+@media (max-width:560px){.pgrid{grid-template-columns:1fr}.inbox{min-height:330px}.m{margin-left:0!important}.sw button{padding:10px 16px}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <h4>Doors close in</h4>
+  <div class="cd" id="cd"><div><b id="d">–</b><span>days</span></div><div><b id="h">–</b><span>hours</span></div><div><b id="m">–</b><span>minutes</span></div><div><b id="s">–</b><span>seconds</span></div></div>
+  <span class="seats">Limited seats · live &amp; interactive</span>
+</div>
+
+<!-- NAV -->
+<nav><div class="wrap">
+  <div class="logo">NR</div>
+  <div class="links"><a href="#about">About</a><a href="#faq">FAQ</a><a class="btn blue" href="#register">Join Masterclass</a></div>
+</div></nav>
+
+<!-- HERO -->
+<header class="hero"><div class="wrap">
+  <div>
+    <div class="eyebrow">A Live Online Masterclass with Namita Ramani</div>
+    <h1>Ads to Revenue Framework</h1>
+    <h2>Identify the gaps between <em>marketing activity</em>, <em>lead generation</em> &amp; <em>revenue growth</em></h2>
+    <p class="lead">Whether you're <strong>already spending on Meta and Google Ads but not seeing results</strong>, or you're <strong>just starting out and unsure which direction to take</strong>, this masterclass is for you.</p>
+    <div class="chips">
+      <div class="chip">📅 <b>Thu, 11 Dec 2026</b></div>
+      <div class="chip">⏰ 3:00–4:30pm <b>GST</b></div>
+      <div class="chip">💻 <b>Live on Zoom</b></div>
+      <div class="chip">🎟️ <b>$97</b> one-time</div>
+    </div>
+    <a class="btn" href="#register">Join the Live Masterclass ($97)</a>
+    <div class="small">Recording + workbook included · Lifetime access</div>
+  </div>
+  <div class="video" aria-label="Intro video from Namita"></div>
+</div></header>
+
+<!-- FEATURED -->
+<div class="featured"><div class="wrap">
+  <h5>FEATURED IN</h5>
+  <div class="logos">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_400/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fc425e2e735bbc3761539.png" alt="">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_400/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fc425bce897da752e2eec.png" alt="">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_400/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fc425e2e735bbc3761538.png" alt="">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_400/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fc425bce897da752e2eed.png" alt="">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_400/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fc423bce897da752e2eb8.png" alt="">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_400/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fc4236103bdfedd9da23c.png" alt="">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_400/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fc4236103bdfedd9da23d.png" alt="">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_400/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fc4236103bdfedd9da240.png" alt="">
+  </div>
+</div></div>
+
+<!-- PROBLEM (interactive) -->
+<section class="pad problem"><div class="wrap center">
+  <span class="pill coral">THE PROBLEM</span>
+  <h3 class="sec">Which of these sounds like your business?</h3>
+  <p class="sub">Tap every card that feels familiar.</p>
+  <div class="pgrid" style="text-align:left">
+    <button class="pcard" data-fix="Step 04 · Fix Your Revenue Leak">
+      <span class="tick">✓</span><span class="pic">⚠</span>
+      <h4>"We get leads, just not the right ones."</h4>
+      <p>Lead quality varies wildly, and your team wastes hours chasing people who were never going to buy.</p>
+      <span class="fix">→ We fix this in <b>Step 04 · Revenue Leak</b></span>
+    </button>
+    <button class="pcard" data-fix="Step 02 · Pick Your Hero Service">
+      <span class="tick">✓</span><span class="pic">◎</span>
+      <h4>"We promote everything at once."</h4>
+      <p>The message reaches no one clearly, and the budget gets spread across too many directions.</p>
+      <span class="fix">→ We fix this in <b>Step 02 · Hero Service</b></span>
+    </button>
+    <button class="pcard" data-fix="Step 01 · Revenue Maths">
+      <span class="tick">✓</span><span class="pic">📊</span>
+      <h4>"Our agency reports clicks, not revenue."</h4>
+      <p>Impressions and reports everywhere, but no one can show what marketing actually did for revenue.</p>
+      <span class="fix">→ We fix this in <b>Step 01 · Revenue Maths</b></span>
+    </button>
+    <button class="pcard" data-fix="Step 03 · Right Target Market">
+      <span class="tick">✓</span><span class="pic">🧭</span>
+      <h4>"We're starting out and don't know where to begin."</h4>
+      <p>Meta or Google? Which service? Which audience? Every option feels like a guess.</p>
+      <span class="fix">→ We fix this in <b>Step 03 · Target Market</b></span>
+    </button>
+    <button class="pcard" data-fix="All 4 steps">
+      <span class="tick">✓</span><span class="pic">🔍</span>
+      <h4>"Something's leaking, but I can't see where."</h4>
+      <p>You can't fix a leak you can't see, and it's hard to spot from inside the business while you're running it.</p>
+      <span class="fix">→ We map it across <b>all 4 steps</b></span>
+    </button>
+    <button class="pcard" data-fix="Step 01 · Revenue Maths">
+      <span class="tick">✓</span><span class="pic">💸</span>
+      <h4>"Spend keeps going up. Revenue doesn't."</h4>
+      <p>More budget hasn't meant more sales, and you're not sure what to change.</p>
+      <span class="fix">→ We fix this in <b>Step 01 · Revenue Maths</b></span>
+    </button>
+  </div>
+  <div class="pres" id="pres">
+    <div class="pmeter"><span id="pbar"></span></div>
+    <p id="ptext">Select the cards that apply to you.</p>
+    <a class="btn" href="#register" id="pcta" style="display:none">Fix these in 90 minutes · $97</a>
+  </div>
+</div></section>
+
+<!-- WHO IS THIS FOR -->
+<section class="pad alt"><div class="wrap split">
+  <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_900/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a4ca5a56a04624f3327ce39.jpeg" alt="">
+  <div>
+    <span class="pill blue">WHO IS THIS FOR</span>
+    <h3 class="sec">The Ads to Revenue Framework is for you if…</h3>
+    <ul class="check">
+      <li>You run a service-based business in the UAE and want to find and fix the marketing gaps holding back your <strong>2027 revenue goals</strong>.</li>
+      <li>You're already getting leads or enquiries, but the revenue doesn't match the spend and the effort.</li>
+      <li>You've tried ads, agencies or "marketing" and felt like money went in without a clear return.</li>
+      <li>You're <strong>just starting out</strong> and want to get your marketing direction right before you spend.</li>
+      <li>You'd rather spend 90 minutes building a real plan than waste another year guessing.</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- LEARN THE SYSTEM -->
+<section class="pad" id="about"><div class="wrap center">
+  <span class="pill blue">LEARN THE SYSTEM</span>
+  <h3 class="sec">A working session, not a webinar</h3>
+  <p class="sub">90 minutes, live. You'll have the Ads to Revenue Framework Workbook in front of you while I walk you through how a lead becomes revenue. You fill in your numbers, services, customers and gaps as we go, and by the end the workbook is your personalised plan.</p>
+  <div class="modules" style="text-align:left">
+    <div class="mod"><div class="n">STEP 01</div><h4>Learn Revenue Maths</h4><p>Work out the sales you need each month to hit your <strong>2027</strong> goal. Most owners never do this calculation.</p></div>
+    <div class="mod"><div class="n">STEP 02</div><h4>Pick Your Hero Service</h4><p>Score your services across seven criteria so you know where to put your energy and money.</p></div>
+    <div class="mod"><div class="n">STEP 03</div><h4>Find the Right Target Market</h4><p>Attract the customers who want your hero service, and understand the problem they're trying to solve.</p></div>
+    <div class="mod"><div class="n">STEP 04</div><h4>Fix Your Revenue Leak</h4><p>Find the one stage where you lose the most, and diagnose it yourself during the session.</p></div>
+  </div>
+  <div class="ws" style="text-align:left">
+    <div><h4>You leave with a plan, not just notes</h4><p>Your revenue target, your hero service, your ideal customer and your biggest leak, all mapped in one workbook.</p></div>
+    <div style="text-align:right"><a class="btn" href="#register">Join the Live Masterclass ($97)</a></div>
+  </div>
+</div></section>
+
+<!-- HOST & SPEAKER -->
+<section class="pad alt" id="host"><div class="wrap">
+  <div class="center"><span class="pill blue">KNOW YOUR HOST &amp; SPEAKER</span></div>
+  <div class="host">
+    <div class="hphoto">
+      <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_900/u_https://assets.cdn.filesafe.space/UlcUPMwXN71iGdVDiG72/media/6a1fbe43e2e735bbc375a21b.jpg" alt="Namita Ramani">
+      <div class="hbadge">🎙️ Podcast Host</div>
+    </div>
+    <div>
+      <h3 class="sec" style="margin-top:0">Namita Ramani</h3>
+      <div class="hrole">Founder &amp; CEO, Above Digital · Lead Gen Expert</div>
+      <div class="hchips">
+        <span>Founded Above Digital in <b>2004</b></span>
+        <span><b>20+ years</b> in UAE growth marketing</span>
+        <span>Clinics · Wellness · Real Estate · Hospitality</span>
+      </div>
+      <div class="quote">"I've been building digital growth systems since before most businesses relied on them."</div>
+      <div class="htabs">
+        <button class="on" data-t="t1">Her story</button><button data-t="t2">Who she works with</button><button data-t="t3">Why this masterclass</button>
+      </div>
+      <div class="hpane on" id="t1"><p>Namita started Above Digital in 2004, when most UAE businesses were still deciding whether they needed a website. As the market grew, so did the problems she solved: from web presence and branding to performance marketing and full-funnel demand generation.</p></div>
+      <div class="hpane" id="t2"><p>For over two decades she has worked with clinics, wellness brands, real estate companies, hospitality and lifestyle businesses, and premium service brands across the UAE, studying what drives revenue and where it quietly disappears.</p></div>
+      <div class="hpane" id="t3"><p>She built the Ads to Revenue Framework around one pattern she kept seeing: <strong>business owners targeting wide and losing revenue without noticing.</strong> This session hands you the same process she uses with her own clients.</p></div>
+      <div class="hlinks"><a href="#">LinkedIn ↗</a><a href="#">Podcast ↗</a><a href="#">Above Digital ↗</a></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- BETTER LEADS (interactive) -->
+<section class="pad bl"><div class="wrap center">
+  <h3 class="sec">Get Better <span class="blw">LEADS</span>, Not More <span class="msw">MESSAGES</span></h3>
+  <p class="sub">A good lead generation system brings in people who already understand the value of what you offer, who are ready to invest, and who become long-term clients.</p>
+  <div class="sw" role="tablist">
+    <button id="swM" class="on">More messages</button><button id="swL">Better leads</button><span class="knob" id="knob"></span>
+  </div>
+  <div class="inbox" id="inbox">
+    <div class="msgs" id="msgs">
+      <div class="m">"Hi, price?" <i>· never replies</i></div>
+      <div class="m">"Is this still available?" <i>· just browsing</i></div>
+      <div class="m">"Can you do it cheaper?" <i>· not a fit</i></div>
+      <div class="m">"Send details pls" <i>· ghosted</i></div>
+      <div class="m">"👍" <i>· ?</i></div>
+    </div>
+    <div class="leads" id="leads">
+      <div class="l"><span>01</span><div><b>Understands your value</b><p>Arrives already knowing why you're different.</p></div></div>
+      <div class="l"><span>02</span><div><b>Ready to invest</b><p>Has the budget and the intent to book now.</p></div></div>
+      <div class="l"><span>03</span><div><b>Becomes a long-term client</b><p>Stays, returns and refers.</p></div></div>
+    </div>
+  </div>
+  <div class="blstat" id="blstat">50 enquiries · 2 sales · team exhausted</div>
+</div></section>
+
+<!-- OFFER -->
+<section class="pad"><div class="wrap">
+  <div class="center"><span class="pill coralbg">LIVE MASTERCLASS</span>
+  <h3 class="sec">How to build an Ads-to-Revenue system for your service business, from first impression to repeat client</h3>
+  <p class="sub">A 90-minute live session for service business owners, clinic founders, wellness brand operators and marketing leads who are tired of inconsistent leads and want something predictable.</p></div>
+  <div class="offer">
+    <div class="card">
+      <h4 style="font-size:20px;margin-bottom:6px">For $97, you get:</h4>
+      <ul class="check">
+        <li>A seat in the live 90-minute session on Zoom</li>
+        <li>The Ads to Revenue Framework Workbook</li>
+        <li>Your self-diagnosed biggest revenue leak</li>
+        <li>Your take-home action plan</li>
+        <li>Live Q&amp;A with Namita</li>
+        <li>Lifetime access to the recording</li>
+      </ul>
+    </div>
+    <div class="price">
+      <div style="font-weight:600;color:var(--coral)">Thu, 11 Dec · 3:00–4:30pm GST · Live on Zoom</div>
+      <div class="amt">$97</div>
+      <small>One-time payment · secure checkout via Stripe</small>
+      <a class="btn" href="#register" style="width:100%">Save My Seat</a>
+      <p class="small">Seats are limited to keep the session interactive.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- TESTIMONIALS -->
+<section class="pad alt"><div class="wrap center">
+  <span class="pill blue">WHAT CLIENTS SAY</span>
+  <h3 class="sec">What business owners say about working with Namita</h3>
+  <div class="reviews" style="text-align:left">
+    <div class="rev"><div class="stars">★★★★★</div>"…I am seeing <mark>3 times the sales than ever before</mark>. What a wonderful team of professionals."<div class="who">En Tee <span>Google review</span></div></div>
+    <div class="rev"><div class="stars">★★★★★</div>"Having <mark>a direct line to her and her personal involvement in strategy and execution</mark> makes a real difference."<div class="who">Manasvi Arya <span>Google review</span></div></div>
+    <div class="rev"><div class="stars">★★★★★</div>"Being a marketer, I not only <mark>highly recommend</mark> entrepreneurs and businesses get Above Digital services…"<div class="who">Dr. Muhammad Azam Khan <span>Google review</span></div></div>
+    <div class="rev"><div class="stars">★★★★★</div>"The team is <mark>professional, friendly and approachable</mark>, with excellent communication throughout."<div class="who">Tej Dhutia <span>Google review</span></div></div>
+  </div>
+</div></section>
+
+<!-- FORM -->
+<section class="pad" id="register"><div class="wrap formwrap">
+  <div>
+    <span class="pill coralbg">JOIN THE LIVE MASTERCLASS</span>
+    <h3 class="sec">Know what it will take to hit your 2027 revenue goals before you decide how much to spend on marketing</h3>
+    <ul class="check" style="margin-top:16px">
+      <li><strong>Thu, 11 December 2026</strong></li>
+      <li>3:00–4:30pm (GMT+4, Dubai)</li>
+      <li>Live on Zoom. The link is emailed after payment.</li>
+    </ul>
+  </div>
+  <form onsubmit="event.preventDefault()">
+    <label>Full Name *</label><input>
+    <label>Email *</label><input>
+    <label>Phone *</label><input>
+    <label>Business Name *</label><input>
+    <label>Designation *</label><input>
+    <label>Website *</label><input>
+    <button class="btn" style="border:0;cursor:pointer">Pay $97 securely through Stripe</button>
+    <div class="secure">🔒 Secure payment · Recording included</div>
+  </form>
+</div></section>
+
+<!-- FAQ -->
+<section class="pad alt faq" id="faq"><div class="wrap" style="max-width:860px">
+  <div class="center"><span class="pill blue">FAQs</span><h3 class="sec">Questions people ask about the masterclass</h3></div>
+  <details open><summary>Where does the masterclass happen?</summary><p>It's live online on Zoom. You'll get the joining link by email after registering.</p></details>
+  <details><summary>Who is this masterclass for?</summary><p>Founders, GMs, marketing leads and owners of service businesses (clinics, wellness brands, real estate companies, premium lifestyle businesses) who already spend on marketing but aren't seeing the lead quality or consistency they want.</p></details>
+  <details><summary>Do I need to already be running ads?</summary><p>No. If you're already running ads, you'll find exactly what to fix. If you're just starting out, you'll leave knowing which service, audience and direction to start with.</p></details>
+  <details><summary>Will this be relevant to my industry?</summary><p>If you run a service business where trust, lead quality and customer experience directly affect revenue, yes. We've built these systems for clinics, wellness brands, real estate developers, hospitality businesses, coaching companies and premium service brands.</p></details>
+  <details><summary>What if I've already tried agencies and it didn't work?</summary><p>That's the most common situation we see. Most campaigns fail because they focus only on the ad, not the full system. This masterclass covers what most agencies never look at: positioning, lead qualification, conversion and retention.</p></details>
+  <details><summary>How long is it?</summary><p>90 minutes, live, with time for questions at the end.</p></details>
+  <details><summary>Is $97 a one-time payment?</summary><p>Yes. One payment gives you full access to the live session.</p></details>
+  <details><summary>Will there be a recording?</summary><p>Yes. Attendees receive the recording after the session, with lifetime access.</p></details>
+  <details><summary>Will I have to share my numbers during the session?</summary><p>No. Your numbers are for your own reference, so you can see how the framework applies to your business.</p></details>
+  <details><summary>How will this 90-minute session benefit my business?</summary><p>You'll walk away clear on what it takes to hit your revenue goals: how many leads you need, which service deserves your resources, and how to manage leads once they come in. Namita shares the exact process she uses with her own clients.</p></details>
+</div></section>
+
+<footer><div class="wrap">
+  <b>Namita Ramani</b>
+  <div>Lead Gen Expert · Podcast Host 🎙️ · CEO @ Above Digital</div>
+  <div class="fl"><a href="#">LinkedIn</a><a href="#">Above Digital</a><a href="#">Instagram</a><a href="#">Podcast</a></div>
+</div></footer>
+
+<div class="sticky"><a class="btn" href="#register">Save My Seat · $97</a></div>
+
+<script>
+(function(){
+  var end=new Date('2026-12-11T15:00:00+04:00').getTime();
+  function pad(n){return n<10?'0'+n:n}
+  function tick(){
+    var t=Math.max(0,end-Date.now());
+    document.getElementById('d').textContent=Math.floor(t/864e5);
+    document.getElementById('h').textContent=pad(Math.floor(t%864e5/36e5));
+    document.getElementById('m').textContent=pad(Math.floor(t%36e5/6e4));
+    document.getElementById('s').textContent=pad(Math.floor(t%6e4/1e3));
+  }
+  tick();setInterval(tick,1000);
+})();
+</script>
+
+<script>
+/* problem cards */
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.pcard')),bar=document.getElementById('pbar'),t=document.getElementById('ptext'),c=document.getElementById('pcta');
+  cards.forEach(function(x){x.addEventListener('click',function(){x.classList.toggle('on');upd()})});
+  function upd(){var n=cards.filter(function(x){return x.classList.contains('on')}).length;bar.style.width=(n/cards.length*100)+'%';
+    if(!n){t.textContent='Select the cards that apply to you.';c.style.display='none';return}
+    t.textContent=n===1?'1 gap spotted. The masterclass shows you how to close it.':n+' gaps spotted. The masterclass walks you through fixing every one.';c.style.display='inline-block'}
+})();
+/* host tabs */
+(function(){
+  var bs=[].slice.call(document.querySelectorAll('.htabs button'));
+  bs.forEach(function(b){b.addEventListener('click',function(){bs.forEach(function(x){x.classList.remove('on');document.getElementById(x.dataset.t).classList.remove('on')});b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on')})});
+})();
+/* leads toggle */
+(function(){
+  var M=document.getElementById('swM'),L=document.getElementById('swL'),k=document.getElementById('knob'),box=document.getElementById('inbox'),st=document.getElementById('blstat');
+  function place(b){k.style.left=b.offsetLeft+'px';k.style.width=b.offsetWidth+'px'}
+  function set(lead){M.classList.toggle('on',!lead);L.classList.toggle('on',lead);box.classList.toggle('lead',lead);place(lead?L:M);k.style.background=lead?'var(--blue)':'var(--coral)';
+    st.textContent=lead?'Fewer enquiries · more sales · time well spent':'50 enquiries · 2 sales · team exhausted';st.classList.toggle('good',lead)}
+  M.onclick=function(){set(false)};L.onclick=function(){set(true)};
+  window.addEventListener('resize',function(){place(L.classList.contains('on')?L:M)});
+  set(false);
+  /* auto-flip once when scrolled into view */
+  var done=false;new IntersectionObserver(function(e){if(e[0].isIntersecting&&!done){done=true;setTimeout(function(){set(true)},1600)}},{threshold:.6}).observe(box);
+})();
+</script>
+</body>
+</html>
